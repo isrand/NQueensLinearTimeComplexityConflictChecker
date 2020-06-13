@@ -4,7 +4,7 @@
 <br>v1.0
 
 ## Overview
-Given an array representing a finished N-Queens board (all numbers != -1), where:
+Given an array representing a finished N-Queens board (all numbers >= 0, < N), where:
 
 * Index `i` of the array represents the column where the queen is found, and
 * `array[i]` represents the row where the queen is found,
