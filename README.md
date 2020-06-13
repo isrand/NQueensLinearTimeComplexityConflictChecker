@@ -4,7 +4,7 @@
 <br>v1.0
 
 ## Overview
-Given an array representing a finished N-Queens board (all numbers >= 0, < N), where:
+Given an array representing a N-Queens board where:
 
 * Index `i` of the array represents the column where the queen is found, and
 * `array[i]` represents the row where the queen is found,
@@ -73,18 +73,16 @@ an algorithm to check for conflicts in linear time complexity (down from O(n<sup
 
 Some considerations on the design of the algorithm:
 
-* The function `getQueenDiagonal` returns a number from 1 to n - 1 that represents the primary diagonal where the queen is located. It does so given a queen's `(i, j)` coordinates in the board, where `i = 0 ... n` and `j = board [i]`:
+* The function `getQueenDiagonal` returns a number from 1 to n - 1 that represents the primary diagonal where the queen is located. It does so given a queen's `(i, j)` coordinates in the board, where `i = 0 ... n` and `j = board [i]`.
 
-```
-      getQueenDiagonal(i, j):
-         return n + i - j
-```
+* Step number 3 can be introduced in the main `for` loop even though it reverses the order of the diagonals. Simple index calculations can be used to iterate through the board in both directions at the same time, hence avoiding having to run two or three `for` loops sequentially. The only piece of code affected by this change is the function discussed in the last bullet point.
 
-* Step number 3 can be introduced in the main `for` loop even though it reverses the order of the diagonals. Simple index calculations can be used to iterate through the board in both directions at the same time, hence avoiding having to run two or three `for` loops sequentially. Calling `getQueenDiagonal` to get the secondary diagonal of the queen would then happen with `j = board [n - i - 1]`.
+* Due to the way the board is represented we only need to check for rows containing more than one queen (not columns). It is assumed that the algorithm that solves the problem moves forward / backwards in the array, only modifying the value of the row of every queen (every `i`).
 
-* Due to the way the board is represented we only need to check for rows containing more than one queen (not columns). It is assumed that the algorithm that solves the problem moves forward / backwards in the array, only modifying the value of the row of every queen.
+* The algorithm takes into account that the default value for the N-Queens board is `-1`. That means,
+`-1` is the value for a queen that hasn't been placed in index `i` by the solving algorithm yet. Upon reaching this number it will be assumed that if the conflict checker hasn't returned yet it must be because there are no conflicts, so the default option will be executed. Remaining `n - i` cases will not be tested, but it barely affects runtime complexity anyways.
 
-* In its current state, the algorithm assumes a finished board as input. It would have to be redesigned to accept unfinished boards in the future (i.e, a board like `[1, 3, -1, -1]` where the `-1` is a placeholder position). Thus, this algorithm can't be used _while_ solving the problem, but rather to check for the validity of its solution afterwards.
+* Due to the implications of the last bullet point this algorithm is safe to run both _while_ looking for a solution for the board as well as when board has been finished.
 
 ## Implementation
 
@@ -102,23 +100,26 @@ An algorithm implementation in pseudocode is presented to illustrate the aforeme
    9  |    secondaryDiagonals = [n * 2, 0]
    10 |
    11 |    for i in 0 ... n:
-   12 |      if rows [board[i]] >= 1:
-   13 |        return true
-   14 |      rows [board[i]]++
-   15 |
-   16 |      primaryDiagonal = getQueenDiagonal(i, board [i])
-   17 |
-   18 |      if primaryDiagonals[primaryDiagonal] >= 1:
-   19 |        return true
-   20 |      primaryDiagonals [primaryDiagonal]++
-   21 |
-   22 |      secondaryDiagonal = n * 2 - getQueenDiagonal(i, board [n - i - 1])
-   23 |
-   24 |      if secondaryDiagonals [secondaryDiagonal] >= 1:
-   25 |        return true
-   26 |      secondaryDiagonals [secondaryDiagonal]++
-   27 |
-   28 |    return false
+   12 |      if board[i] == -1:
+   13 |        break
+   14 |
+   15 |      if rows [board[i]] >= 1:
+   16 |        return true
+   17 |      rows [board[i]]++
+   18 |
+   19 |      primaryDiagonal = getQueenDiagonal(i, board [i])
+   20 |
+   21 |      if primaryDiagonals[primaryDiagonal] >= 1:
+   22 |        return true
+   23 |      primaryDiagonals [primaryDiagonal]++
+   24 |
+   25 |      secondaryDiagonal = n * 2 - getQueenDiagonal(i, board [n - i - 1])
+   26 |
+   27 |      if secondaryDiagonals [secondaryDiagonal] >= 1:
+   28 |        return true
+   29 |      secondaryDiagonals [secondaryDiagonal]++
+   30 |
+   31 |    return false
 ```
 
 Taking the aforementioned board as an example (N-Queens(4)), the trace of the algorithm would be
@@ -129,3 +130,5 @@ Taking the aforementioned board as an example (N-Queens(4)), the trace of the al
 | 1 | [0, 1, 0, 1] | [0, 0, 1, 1, 0, 0, 0, 0]  | [0, 0, 0, 1, 0, 0, 1, 0] |
 | 2 | [1, 1, 0, 1] | [0, 0, 1, 1, 0, 0, 1, 0]  | [0, 0, 0, 1, 0, 1, 1, 0] |
 | 3 | [1, 1, 1, 1] | [0, 0, 1, 1, 0, 1, 1, 0]  | [0, 0, 1, 1, 0, 1, 1, 0] |
+
+Another consideration 
