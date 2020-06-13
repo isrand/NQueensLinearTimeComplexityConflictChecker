@@ -1,13 +1,13 @@
 # N-Queens Linear Time Complexity Conflict Checker
 1<sup>st</sup> of June, 2020
 <br>Israel Nebot Dominguez
-
+<br>v1.0
 
 ## Algorithm summary
 Given an array representing a finished N-Queens board (all numbers != -1), where:
 
 * Index `i` of the array represents the column where the queen is found, and
-* `array[i]` represents the row where the queen is found
+* `array[i]` represents the row where the queen is found,
 
 such as the following:
 
@@ -25,7 +25,7 @@ N-Queens(4) = [1, 3, 0, 2]
    -----------------
 ```
 
-an algorithm to check for conflicts in linear time complexity (down from O(n<sup>2</sup>)) is proposed. It achieves this speed by doing the following:
+an algorithm to check for conflicts in linear time complexity (down from O(n<sup>2</sup>)) is presented. It achieves this speed by doing the following:
 
 1) Checking that every row contains only one queen.
 
@@ -73,17 +73,51 @@ an algorithm to check for conflicts in linear time complexity (down from O(n<sup
 
 Some considerations on the design of the algorithm:
 
-* The function `getQueenDiagonal` returns a number from 1 to n - 1 that represents the primary diagonal where the queen is located. It does so given a queen's `(i,j)` coordinates in the board, where `i = 0 ... n` and `j = board[i]`:
+* The function `getQueenDiagonal` returns a number from 1 to n - 1 that represents the primary diagonal where the queen is located. It does so given a queen's `(i, j)` coordinates in the board, where `i = 0 ... n` and `j = board[i]`:
 
 ```
       getQueenDiagonal(i, j):
-         return (n - 1) + i - j;
+         return (n - 1) + i - j
 ```
 
-* Step number 3 can be introduced in the main `for ... in` loop even though it reverses the order of the diagonals. Simple index calculations can be used to iterate through the board in both directions at the same time, hence avoiding having to run two or three for loops sequentially.
+* Step number 3 can be introduced in the main `for` loop even though it reverses the order of the diagonals. Simple index calculations can be used to iterate through the board in both directions at the same time, hence avoiding having to run two or three `for` loops sequentially.
 
 * Due to the way the board is represented we don't need to check for columns containing more than one queen. It is assumed that the algorithm that solves the problem moves forward / backwards in the array, only modifying the value of the row of every queen.
 
-* In its current state, the algorithm assumes a finished board as input. It would have to be redesigned to accept unfinished boards in the future (i.e, a board like `[1, 3, -1, -1]`). Thus, this algorithm can't be used _while_ solving the problem, but rather to check for the validity of its solution afterwards.
+* In its current state, the algorithm assumes a finished board as input. It would have to be redesigned to accept unfinished boards in the future (i.e, a board like `[1, 3, -1, -1]` where the `-1` is a placeholder position). Thus, this algorithm can't be used _while_ solving the problem, but rather to check for the validity of its solution afterwards.
 
 ## Algorithm implementation
+
+An algorithm implementation in pseudocode is presented to illustrate the aforementioned design (with a single `for` loop):
+
+```
+   1  |  getQueenDiagonal (i, j):
+   2  |     return (n - 1) + i - j
+   3  |
+   4  |  hasConflicts (board):
+   5  |
+   6  |    rows = [board.size]
+   7  |    primaryDiagonals = [board.size * 2]
+   8  |    secondaryDiagonals = [board.size * 2]
+   9  |
+   10 |    for i = 0; i < board.size; i++:
+   11 |      if rows [board[i]] != 0:
+   12 |        return true
+   13 |      rows [board[i]]++
+   14 |
+   15 |      primaryDiagonal = getQueenDiagonal(i, board[i])
+   16 |
+   17 |      if primaryDiagonals[primaryDiagonal] != 0:
+   18 |        return true
+   19 |      primaryDiagonals [primaryDiagonal]++
+   20 |
+   21 |      back_i = n - i
+   22 |
+   23 |      secondaryDiagonal = getQueenDiagonal(back_i, board[i])
+   24 |
+   25 |      if secondaryDiagonals [secondaryDiagonal] != 0:
+   26 |        return true
+   27 |      secondaryDiagonals [secondaryDiagonal]++
+   28 |
+   29 |    return false
+```
