@@ -88,7 +88,7 @@ Some considerations on the design of the algorithm:
 
 ## Implementation
 
-An algorithm implementation in pseudocode is presented to illustrate the aforementioned design (with a single `for` loop):
+An algorithm implementation in pseudocode is presented to illustrate the aforementioned design (with a single `for` loop).
 
 ```
    1  |  getQueenDiagonal (i, j):
@@ -97,24 +97,24 @@ An algorithm implementation in pseudocode is presented to illustrate the aforeme
    4  |  hasConflicts (board):
    5  |
    6  |    n = board.size
-   7  |    rows = [n]                             // assuming it's initialized to [0, 0, 0, ...]
-   8  |    primaryDiagonals = [n * 2]
-   9  |    secondaryDiagonals = [n * 2]
+   7  |    rows = [n, 0]            
+   8  |    primaryDiagonals = [n * 2, 0]
+   9  |    secondaryDiagonals = [n * 2, 0]
    10 |
    11 |    for i in 0 ... n:
-   12 |      if rows [board[i]] != 0:
+   12 |      if rows [board[i]] >= 1:
    13 |        return true
    14 |      rows [board[i]]++
    15 |
    16 |      primaryDiagonal = getQueenDiagonal(i, board [i])
    17 |
-   18 |      if primaryDiagonals[primaryDiagonal] != 0:
+   18 |      if primaryDiagonals[primaryDiagonal] >= 1:
    19 |        return true
    20 |      primaryDiagonals [primaryDiagonal]++
    21 |
    22 |      secondaryDiagonal = n * 2 - getQueenDiagonal(i, board [n - i - 1])
    23 |
-   24 |      if secondaryDiagonals [secondaryDiagonal] != 0:
+   24 |      if secondaryDiagonals [secondaryDiagonal] >= 1:
    25 |        return true
    26 |      secondaryDiagonals [secondaryDiagonal]++
    27 |
