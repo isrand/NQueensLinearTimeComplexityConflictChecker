@@ -97,7 +97,7 @@ An algorithm implementation in pseudocode is presented to illustrate the aforeme
    4  |  hasConflicts (board):
    5  |
    6  |    n = board.size
-   7  |    rows = [n]
+   7  |    rows = [n]                             // assuming it's initialized to [0, 0, 0, ...]
    8  |    primaryDiagonals = [n * 2]
    9  |    secondaryDiagonals = [n * 2]
    10 |
