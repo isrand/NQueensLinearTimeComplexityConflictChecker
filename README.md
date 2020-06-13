@@ -3,7 +3,7 @@
 <br>Israel Nebot Dominguez
 <br>v1.0
 
-## Algorithm summary
+## Overview
 Given an array representing a finished N-Queens board (all numbers != -1), where:
 
 * Index `i` of the array represents the column where the queen is found, and
@@ -69,7 +69,7 @@ an algorithm to check for conflicts in linear time complexity (down from O(n<sup
    -----------------
 ```
 
-## Algorithm design
+## Design
 
 Some considerations on the design of the algorithm:
 
@@ -86,7 +86,7 @@ Some considerations on the design of the algorithm:
 
 * In its current state, the algorithm assumes a finished board as input. It would have to be redesigned to accept unfinished boards in the future (i.e, a board like `[1, 3, -1, -1]` where the `-1` is a placeholder position). Thus, this algorithm can't be used _while_ solving the problem, but rather to check for the validity of its solution afterwards.
 
-## Algorithm implementation
+## Implementation
 
 An algorithm implementation in pseudocode is presented to illustrate the aforementioned design (with a single `for` loop):
 
