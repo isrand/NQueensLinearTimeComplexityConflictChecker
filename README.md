@@ -73,14 +73,14 @@ an algorithm to check for conflicts in linear time complexity (down from O(n<sup
 
 Some considerations on the design of the algorithm:
 
-* The function `getQueenDiagonal` returns a number from 1 to n - 1 that represents the primary diagonal where the queen is located. It does so given a queen's `(i, j)` coordinates in the board, where `i = 0 ... n` and `j = board[i]`:
+* The function `getQueenDiagonal` returns a number from 1 to n - 1 that represents the primary diagonal where the queen is located. It does so given a queen's `(i, j)` coordinates in the board, where `i = 0 ... n` and `j = board [i]`:
 
 ```
       getQueenDiagonal(i, j):
          return n + i - j
 ```
 
-* Step number 3 can be introduced in the main `for` loop even though it reverses the order of the diagonals. Simple index calculations can be used to iterate through the board in both directions at the same time, hence avoiding having to run two or three `for` loops sequentially.
+* Step number 3 can be introduced in the main `for` loop even though it reverses the order of the diagonals. Simple index calculations can be used to iterate through the board in both directions at the same time, hence avoiding having to run two or three `for` loops sequentially. Calling `getQueenDiagonal` to get the secondary diagonal of the queen would then happen with `j = board [n - i - 1]`.
 
 * Due to the way the board is represented we only need to check for rows containing more than one queen (not columns). It is assumed that the algorithm that solves the problem moves forward / backwards in the array, only modifying the value of the row of every queen.
 
