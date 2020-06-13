@@ -139,8 +139,8 @@ The presented algorithm has proven to be faster than a traditional "all versus a
 
 Seeing as the bottleneck of the N-Queens problem isn't necessarily the conflict check but rather the backtracking approach (which eventually leaves us with a total run time of O(n!)), the presented algorithm will not shake any ground. However it will improve asymptotically the runtime of any algorithm that tries to solve the problem, while also providing a linear time version to validate the solution to a board.
 
-I took on the challenge to develop this algorithm as part of my research on the N-Queens problem and its relation to the P vs. NP problem: 
+I took on the challenge to develop this algorithm as part of my five-year long research on the N-Queens problem and its relation to the P vs. NP problem: 
 
-> If the solution to a problem is easy to check for correctness, must the problem be easy to solve?
+> If the solution to a problem is easy to check for correctness (NP), must the problem be easy to solve? (P)
 
-
+In tackling this issue (and proving if N-Queens answers to this question with a *yes* or a *no*) I wanted to start from the bottom and ensure that the problem is at the very least NP. Since I can now validate the problem in linear time, I am one step closer to finding out.
