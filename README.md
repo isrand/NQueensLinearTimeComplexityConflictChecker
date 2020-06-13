@@ -122,7 +122,7 @@ An algorithm implementation in pseudocode is presented to illustrate the aforeme
    31 |    return false
 ```
 
-Taking the aforementioned board as an example (N-Queens(4)), the trace of the algorithm would be
+Taking the aforementioned finished board as an example (N-Queens(4)), the trace of the algorithm would be
 
 | i | rows         | primaryDiagonals          | secondaryDiagonals       |
 |---|--------------|---------------------------|--------------------------|
@@ -130,3 +130,17 @@ Taking the aforementioned board as an example (N-Queens(4)), the trace of the al
 | 1 | [0, 1, 0, 1] | [0, 0, 1, 1, 0, 0, 0, 0]  | [0, 0, 0, 1, 0, 0, 1, 0] |
 | 2 | [1, 1, 0, 1] | [0, 0, 1, 1, 0, 0, 1, 0]  | [0, 0, 0, 1, 0, 1, 1, 0] |
 | 3 | [1, 1, 1, 1] | [0, 0, 1, 1, 0, 1, 1, 0]  | [0, 0, 1, 1, 0, 1, 1, 0] |
+
+## Analysis
+
+The presented algorithm has proven to be faster than a traditional "all versus all" approach, where two nested `for` loops are used to check every queen against every other queen in the board. This conventional way of checking runs in O(n<sup>2</sup>) time, while the presented version runs in linear time. 
+
+## Closing words
+
+Seeing as the bottleneck of the N-Queens problem isn't necessarily the conflict check but rather the backtracking approach (which eventually leaves us with a total run time of O(n!)), the presented algorithm will not shake any ground. However it will improve asymptotically the runtime of any algorithm that tries to solve the problem, while also providing a linear time version to validate the solution to a board.
+
+I took on the challenge to develop this algorithm as part of my research on the N-Queens problem and its relation to the P vs. NP problem: 
+
+> If the solution to a problem is easy to check for correctness, must the problem be easy to solve?
+
+
