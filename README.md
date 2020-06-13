@@ -143,4 +143,4 @@ I took on the challenge to develop this algorithm as part of my five-year long r
 
 > If the solution to a problem is easy to check for correctness (NP), must the problem be easy to solve? (P)
 
-In tackling this issue (and proving if N-Queens answers to this question with a *yes* or a *no*) I wanted to start from the bottom and ensure that the problem is at the very least NP. Since I can now validate the problem in linear time, I am one step closer to finding out.
+In tackling this issue (and proving if N-Queens answers to this question with a *yes* or a *no*) I wanted to start from the bottom and ensure that the problem is at the very least NP. Since I can now validate the problem in linear time I am one step closer to finding out.
