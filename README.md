@@ -120,11 +120,3 @@ An algorithm implementation in pseudocode is presented to illustrate the aforeme
    27 |
    28 |    return false
 ```
-
-Taking the aforementioned board as an example (N-Queens(4)), the trace of the algorithm would be...
-| i 	| board[i] 	| board[n-i-1] 	| rows         	| primaryDiagonal 	| primaryDiagonals         	| secondaryDiagonal 	| secondaryDiagonals 	|
-|---	|----------	|--------------	|--------------	|-----------------	|--------------------------	|-------------------	|--------------------	|
-| 0 	| 1        	| 2            	| [0, 1, 0, 0] 	|                 	| [0, 0, 0, 0, 0, 0, 0, 0] 	|                   	|                    	|
-| 1 	| 3        	| 0            	| [0, 1, 0, 1] 	|                 	|                          	|                   	|                    	|
-| 2 	| 0        	| 3            	| [1, 1, 0, 1] 	|                 	|                          	|                   	|                    	|
-| 3 	| 2        	| 1            	| [1, 1, 1, 1] 	|                 	|                          	|                   	|                    	|
