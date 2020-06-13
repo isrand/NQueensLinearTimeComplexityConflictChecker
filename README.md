@@ -130,5 +130,3 @@ Taking the aforementioned board as an example (N-Queens(4)), the trace of the al
 | 1 | [0, 1, 0, 1] | [0, 0, 1, 1, 0, 0, 0, 0]  | [0, 0, 0, 1, 0, 0, 1, 0] |
 | 2 | [1, 1, 0, 1] | [0, 0, 1, 1, 0, 0, 1, 0]  | [0, 0, 0, 1, 0, 1, 1, 0] |
 | 3 | [1, 1, 1, 1] | [0, 0, 1, 1, 0, 1, 1, 0]  | [0, 0, 1, 1, 0, 1, 1, 0] |
-
-Another consideration 
