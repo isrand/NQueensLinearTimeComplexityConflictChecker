@@ -77,7 +77,7 @@ Some considerations on the design of the algorithm:
 
 ```
       getQueenDiagonal(i, j):
-         return (n - 1) + i - j
+         return n + i - j
 ```
 
 * Step number 3 can be introduced in the main `for` loop even though it reverses the order of the diagonals. Simple index calculations can be used to iterate through the board in both directions at the same time, hence avoiding having to run two or three `for` loops sequentially.
