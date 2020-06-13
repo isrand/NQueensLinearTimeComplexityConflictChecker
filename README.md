@@ -82,7 +82,7 @@ Some considerations on the design of the algorithm:
 
 * Step number 3 can be introduced in the main `for` loop even though it reverses the order of the diagonals. Simple index calculations can be used to iterate through the board in both directions at the same time, hence avoiding having to run two or three `for` loops sequentially.
 
-* Due to the way the board is represented we don't need to check for columns containing more than one queen. It is assumed that the algorithm that solves the problem moves forward / backwards in the array, only modifying the value of the row of every queen.
+* Due to the way the board is represented we only need to check for rows containing more than one queen (not columns). It is assumed that the algorithm that solves the problem moves forward / backwards in the array, only modifying the value of the row of every queen.
 
 * In its current state, the algorithm assumes a finished board as input. It would have to be redesigned to accept unfinished boards in the future (i.e, a board like `[1, 3, -1, -1]` where the `-1` is a placeholder position). Thus, this algorithm can't be used _while_ solving the problem, but rather to check for the validity of its solution afterwards.
 
@@ -92,32 +92,31 @@ An algorithm implementation in pseudocode is presented to illustrate the aforeme
 
 ```
    1  |  getQueenDiagonal (i, j):
-   2  |     return (n - 1) + i - j
+   2  |     return n + i - j
    3  |
    4  |  hasConflicts (board):
    5  |
-   6  |    rows = [board.size]
-   7  |    primaryDiagonals = [board.size * 2]
-   8  |    secondaryDiagonals = [board.size * 2]
-   9  |
-   10 |    for i = 0; i < board.size; i++:
-   11 |      if rows [board[i]] != 0:
-   12 |        return true
-   13 |      rows [board[i]]++
-   14 |
-   15 |      primaryDiagonal = getQueenDiagonal(i, board[i])
-   16 |
-   17 |      if primaryDiagonals[primaryDiagonal] != 0:
-   18 |        return true
-   19 |      primaryDiagonals [primaryDiagonal]++
-   20 |
-   21 |      back_i = n - i
-   22 |
-   23 |      secondaryDiagonal = getQueenDiagonal(back_i, board[i])
-   24 |
-   25 |      if secondaryDiagonals [secondaryDiagonal] != 0:
-   26 |        return true
-   27 |      secondaryDiagonals [secondaryDiagonal]++
-   28 |
-   29 |    return false
+   6  |    n = board.size
+   7  |    rows = [n]
+   8  |    primaryDiagonals = [n * 2]
+   9  |    secondaryDiagonals = [n * 2]
+   10 |
+   11 |    for i in 0 ... n:
+   12 |      if rows [board[i]] != 0:
+   13 |        return true
+   14 |      rows [board[i]]++
+   15 |
+   16 |      primaryDiagonal = getQueenDiagonal(i, board [i])
+   17 |
+   18 |      if primaryDiagonals[primaryDiagonal] != 0:
+   19 |        return true
+   20 |      primaryDiagonals [primaryDiagonal]++
+   21 |
+   22 |      secondaryDiagonal = n * 2 - getQueenDiagonal(i, board [n - i - 1])
+   23 |
+   24 |      if secondaryDiagonals [secondaryDiagonal] != 0:
+   25 |        return true
+   26 |      secondaryDiagonals [secondaryDiagonal]++
+   27 |
+   28 |    return false
 ```
