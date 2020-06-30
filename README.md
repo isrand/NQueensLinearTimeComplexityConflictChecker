@@ -73,8 +73,6 @@ an algorithm to check for conflicts in linear time complexity (down from O(n<sup
 
 Some considerations on the design of the algorithm:
 
-* The function `getQueenDiagonal` returns a number from 1 to n - 1 that represents the primary diagonal where the queen is located. It does so given a queen's `(i, j)` coordinates in the board, where `i = 0 ... n` and `j = board [i]`.
-
 * Step number 3 can be introduced in the main `for` loop even though it reverses the order of the diagonals. Simple index calculations can be used to iterate through the board in both directions at the same time, hence avoiding having to run two or three `for` loops sequentially. The only piece of code affected by this change is the function discussed in the last bullet point.
 
 * Due to the way the board is represented we only need to check for rows containing more than one queen (not columns). It is assumed that the algorithm that solves the problem moves forward / backwards in the array, only modifying the value of the row of every queen (every `i`).
@@ -89,37 +87,34 @@ Some considerations on the design of the algorithm:
 An algorithm implementation in pseudocode is presented to illustrate the aforementioned design (with a single `for` loop).
 
 ```
-   1  |  getQueenDiagonal (i, j):
-   2  |     return n + i - j
-   3  |
-   4  |  hasConflicts (board):
-   5  |
-   6  |    n = board.size
-   7  |    rows = [n, 0]            
-   8  |    primaryDiagonals = [n * 2, 0]
-   9  |    secondaryDiagonals = [n * 2, 0]
-   10 |
-   11 |    for i in 0 ... n:
-   12 |      if board[i] == -1:
-   13 |        break
-   14 |
-   15 |      if rows [board[i]] >= 1:
-   16 |        return true
-   17 |      rows [board[i]]++
-   18 |
-   19 |      primaryDiagonal = getQueenDiagonal(i, board [i])
-   20 |
-   21 |      if primaryDiagonals[primaryDiagonal] >= 1:
-   22 |        return true
-   23 |      primaryDiagonals [primaryDiagonal]++
-   24 |
-   25 |      secondaryDiagonal = n * 2 - getQueenDiagonal(i, board [n - i - 1])
-   26 |
-   27 |      if secondaryDiagonals [secondaryDiagonal] >= 1:
-   28 |        return true
-   29 |      secondaryDiagonals [secondaryDiagonal]++
-   30 |
-   31 |    return false
+   1  |  hasConflicts (board):
+   2  |
+   3  |    n = board.size
+   4  |    rows = [n, 0]            
+   5  |    primaryDiagonals = [n * 2, 0]
+   6  |    secondaryDiagonals = [n * 2, 0]
+   7  |
+   8  |    for i in 0 ... n:
+   9  |      if board[i] == -1:
+   10 |        break
+   11 |
+   12 |      if rows [board[i]] >= 1:
+   13 |        return true
+   14 |      rows [board[i]]++
+   15 |
+   16 |      primaryDiagonal = n + i - board[i]
+   17 |
+   18 |      if primaryDiagonals[primaryDiagonal] >= 1:
+   19 |        return true
+   20 |      primaryDiagonals [primaryDiagonal]++
+   21 |
+   22 |      secondaryDiagonal = (n * 2 - 1) - (i + board[i])
+   23 |
+   24 |      if secondaryDiagonals [secondaryDiagonal] >= 1:
+   25 |        return true
+   26 |      secondaryDiagonals [secondaryDiagonal]++
+   27 |
+   28 |    return false
 ```
 
 Taking the aforementioned finished board as an example (N-Queens(4)), the trace of the algorithm would be
