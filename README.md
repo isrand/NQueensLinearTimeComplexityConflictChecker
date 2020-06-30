@@ -1,7 +1,6 @@
 # N-Queens Linear Time Complexity Conflict Checker
 1<sup>st</sup> of June, 2020
 <br>Israel Nebot Dominguez
-<br>v1.0
 
 ## Overview
 Given an array representing a N-Queens board where:
