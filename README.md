@@ -78,9 +78,8 @@ Some considerations on the design of the algorithm:
 * Due to the way the board is represented we only need to check for rows containing more than one queen (not columns). It is assumed that the algorithm that solves the problem moves forward / backwards in the array, only modifying the value of the row of every queen (every `i`).
 
 * The algorithm takes into account that the default value for the N-Queens board is `-1`. That means,
-`-1` is the value for a queen that hasn't been placed in index `i` by the solving algorithm yet. Upon reaching this number it will be assumed that if the conflict checker hasn't returned yet it must be because there are no conflicts, so the default option will be executed. Remaining `n - i` cases will not be tested, but it barely affects runtime complexity anyways.
+`-1` is the value for a queen that hasn't been placed in index `i` by the solving algorithm yet. Upon reaching this number it will be assumed that if the conflict checker hasn't returned yet it must be because there are no conflicts, so the default option will be executed. This means that the algorithm is safe to run both _while_ looking for a solution for the board as well as when board has been finished. Remaining `n - i` cases will not be tested, but it barely affects runtime complexity anyways. 
 
-* Due to the implications of the last bullet point this algorithm is safe to run both _while_ looking for a solution for the board as well as when board has been finished.
 
 ## Implementation
 
@@ -117,18 +116,9 @@ An algorithm implementation in pseudocode is presented to illustrate the aforeme
    28 |    return false
 ```
 
-Taking the aforementioned finished board as an example (N-Queens(4)), the trace of the algorithm would be
-
-| i | rows         | primaryDiagonals          | secondaryDiagonals       |
-|---|--------------|---------------------------|--------------------------|
-| 0 | [0, 1, 0, 0] | [0, 0, 0, 1, 0, 0, 0, 0]  | [0, 0, 0, 0, 0, 0, 1, 0] |
-| 1 | [0, 1, 0, 1] | [0, 0, 1, 1, 0, 0, 0, 0]  | [0, 0, 0, 1, 0, 0, 1, 0] |
-| 2 | [1, 1, 0, 1] | [0, 0, 1, 1, 0, 0, 1, 0]  | [0, 0, 0, 1, 0, 1, 1, 0] |
-| 3 | [1, 1, 1, 1] | [0, 0, 1, 1, 0, 1, 1, 0]  | [0, 0, 1, 1, 0, 1, 1, 0] |
-
 ## Analysis
 
-The presented algorithm has proven to be faster than a traditional "all versus all" approach, where two nested `for` loops are used to check every queen against every other queen in the board. This conventional way of checking runs in O(n<sup>2</sup>) time, while the presented version runs in linear time. 
+The presented algorithm has proven to be faster than a traditional "all versus all" approach, where two nested `for` loops are used to check every queen against every other queen in the board. This conventional way of checking runs in O(n<sup>2</sup>) time, while the presented version runs in linear time.
 
 ## Closing words
 
