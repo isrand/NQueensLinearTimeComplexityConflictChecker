@@ -94,12 +94,12 @@ An algorithm implementation in pseudocode is presented to illustrate the aforeme
    6  |    secondaryDiagonals = [n * 2, 0]
    7  |
    8  |    for i in 0 ... n:
-   9  |      if board[i] == -1:
-   10 |        break
-   11 |
-   12 |      if rows [board[i]] >= 1:
-   13 |        return true
-   14 |      rows [board[i]]++
+   9  |      if board[i] != -1:
+   10 |        if rows [board[i]] >= 1:
+   11 |           return true
+   12 |        rows [board[i]]++
+   13 |
+   14 |        primaryDiagonal = n + i - board[i]
    15 |
    16 |      primaryDiagonal = n + i - board[i]
    17 |
@@ -107,13 +107,11 @@ An algorithm implementation in pseudocode is presented to illustrate the aforeme
    19 |        return true
    20 |      primaryDiagonals [primaryDiagonal]++
    21 |
-   22 |      secondaryDiagonal = (n * 2 - 1) - (i + board[i])
-   23 |
-   24 |      if secondaryDiagonals [secondaryDiagonal] >= 1:
-   25 |        return true
-   26 |      secondaryDiagonals [secondaryDiagonal]++
-   27 |
-   28 |    return false
+   22 |        if secondaryDiagonals [secondaryDiagonal] >= 1:
+   23 |           return true
+   24 |        secondaryDiagonals [secondaryDiagonal]++
+   25 |
+   26 |     return false
 ```
 
 ## Analysis
