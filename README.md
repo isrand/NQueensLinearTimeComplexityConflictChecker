@@ -1,5 +1,5 @@
 # N-Queens Linear Time Complexity Conflict Checker
-01/06-2020
+01/06/2020
 
 ## Overview
 Given an array representing a N-Queens board where:
