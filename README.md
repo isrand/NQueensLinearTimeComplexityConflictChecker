@@ -1,6 +1,5 @@
 # N-Queens Linear Time Complexity Conflict Checker
-1<sup>st</sup> of June, 2020
-<br>Israel Nebot Dominguez
+01/06-2020
 
 ## Overview
 Given an array representing a N-Queens board where:
@@ -24,9 +23,11 @@ N-Queens(4) = [1, 3, 0, 2]
    -----------------
 ```
 
-an algorithm to check for conflicts in linear time complexity (down from O(n<sup>2</sup>)) is presented. It achieves this speed by doing the following:
+here is an algorithm that checks for conflicts in linear time (and space) complexity.
 
-1) Checking that every row contains only one queen.
+## Algorithm steps
+
+### 1) Check that every row contains only one queen.
 
 ```
    -----------------
@@ -40,7 +41,7 @@ an algorithm to check for conflicts in linear time complexity (down from O(n<sup
    -----------------
 ```
 
-2) Checking that primary diagonals (left to right, top to bottom, starting in the bottom left corner) only contain one queen per diagonal.
+### 2) Check that primary diagonals (left to right, top to bottom, starting in the bottom left corner) only contain one queen per diagonal.
 
 ```
    -----------------                  
@@ -54,7 +55,7 @@ an algorithm to check for conflicts in linear time complexity (down from O(n<sup
    -----------------
 ```
 
-3) Checking that secondary diagonals (right to left, top to bottom, starting in the bottom right corner) only contain one queen per diagonal.
+### 3) Check that secondary diagonals (right to left, top to bottom, starting in the bottom right corner) only contain one queen per diagonal.
 
 ```
    -----------------                  
@@ -102,7 +103,7 @@ An algorithm implementation in pseudocode is presented to illustrate the aforeme
    15 |
    16 |      primaryDiagonal = n + i - board[i]
    17 |
-   18 |      if primaryDiagonals[primaryDiagonal] >= 1:
+   18 |      if primaryDiagonals [primaryDiagonal] >= 1:
    19 |        return true
    20 |      primaryDiagonals [primaryDiagonal]++
    21 |
@@ -117,8 +118,4 @@ An algorithm implementation in pseudocode is presented to illustrate the aforeme
 
 ## Analysis
 
-The presented algorithm has proven to be faster than a traditional "all versus all" approach, where two nested `for` loops are used to check every queen against every other queen in the board. This conventional way of checking runs in O(n<sup>2</sup>) time, while the presented version runs in linear time.
-
-## Closing words
-
-Seeing as the bottleneck of the N-Queens problem isn't necessarily the conflict check but rather the backtracking approach (which eventually leaves us with a total run time of O(n!)), the presented algorithm will not shake any ground. However it will improve asymptotically the runtime of any algorithm that tries to solve the problem, while also providing a linear time version to validate the solution to a board.
+The total runtime of the algorithm is O(n), and the space complexity is O(n) + O(2n) + O(2n) --> O(n.)
