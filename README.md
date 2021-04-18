@@ -27,7 +27,7 @@ here is an algorithm that checks for conflicts in linear time (and space) comple
 
 ## Algorithm steps
 
-### 1) Check that every row contains only one queen.
+#### 1) Check that every row contains only one queen.
 
 ```
    -----------------
@@ -41,7 +41,7 @@ here is an algorithm that checks for conflicts in linear time (and space) comple
    -----------------
 ```
 
-### 2) Check that primary diagonals (left to right, top to bottom, starting in the bottom left corner) only contain one queen per diagonal.
+#### 2) Check that primary diagonals (left to right, top to bottom, starting in the bottom left corner) only contain one queen per diagonal.
 
 ```
    -----------------                  
@@ -55,7 +55,7 @@ here is an algorithm that checks for conflicts in linear time (and space) comple
    -----------------
 ```
 
-### 3) Check that secondary diagonals (right to left, top to bottom, starting in the bottom right corner) only contain one queen per diagonal.
+#### 3) Check that secondary diagonals (right to left, top to bottom, starting in the bottom right corner) only contain one queen per diagonal.
 
 ```
    -----------------                  
@@ -79,7 +79,6 @@ Some considerations on the design of the algorithm:
 
 * The algorithm takes into account that the default value for the N-Queens board is `-1`. That means,
 `-1` is the value for a queen that hasn't been placed in index `i` by the solving algorithm yet. Upon reaching this number it will be assumed that if the conflict checker hasn't returned yet it must be because there are no conflicts, so the default option will be executed. This means that the algorithm is safe to run both _while_ looking for a solution for the board as well as when board has been finished. Remaining `n - i` cases will not be tested, but it barely affects runtime complexity anyways. 
-
 
 ## Implementation
 
@@ -116,4 +115,5 @@ An algorithm implementation in pseudocode is presented to illustrate the aforeme
 
 ## Analysis
 
-The total runtime of the algorithm is O(n), and the space complexity is O(n) + O(2n) + O(2n) --> O(n.)
+* Time complexity: `O(n)`
+* Space complexity: `O(n)`
