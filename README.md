@@ -84,33 +84,32 @@ Some considerations on the design of the algorithm:
 
 An algorithm implementation in pseudocode is presented to illustrate the aforementioned design (with a single `for` loop).
 
-```
-   1  |  hasConflicts (board):
-   2  |
-   3  |    n = board.size
-   4  |    rows = [n, 0]            
-   5  |    primaryDiagonals = [n * 2, 0]
-   6  |    secondaryDiagonals = [n * 2, 0]
-   7  |
-   8  |    for i in 0 ... n:
-   9  |      if board[i] != -1:
-   10 |        if rows [board[i]] >= 1:
-   11 |           return true
-   12 |        rows [board[i]]++
-   13 |
-   14 |        primaryDiagonal = n + i - board[i]
-   15 |
-   16 |      primaryDiagonal = n + i - board[i]
-   17 |
-   18 |      if primaryDiagonals [primaryDiagonal] >= 1:
-   19 |        return true
-   20 |      primaryDiagonals [primaryDiagonal]++
-   21 |
-   22 |        if secondaryDiagonals [secondaryDiagonal] >= 1:
-   23 |           return true
-   24 |        secondaryDiagonals [secondaryDiagonal]++
-   25 |
-   26 |     return false
+```p
+hasConflicts (board):
+   n = board.size
+   rows = [n, 0]            
+   primaryDiagonals = [n * 2, 0]
+   secondaryDiagonals = [n * 2, 0]
+
+   for i in 0 ... n:
+      if board[i] != -1:
+         if rows [board[i]] >= 1:
+            return true
+         rows [board[i]]++
+
+         primaryDiagonal = n + i - board[i]
+
+         if primaryDiagonals [primaryDiagonal] >= 1:
+            return true
+         primaryDiagonals [primaryDiagonal]++
+
+         secondaryDiagonal = (n * 2 - 1) - (i + board[i])
+
+         if secondaryDiagonals [secondaryDiagonal] >= 1:
+            return true
+         secondaryDiagonals [secondaryDiagonal]++
+
+   return false
 ```
 
 ## Analysis
