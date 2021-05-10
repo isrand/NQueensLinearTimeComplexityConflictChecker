@@ -75,7 +75,7 @@ Some considerations on the design of the algorithm:
 
 * Step number 3 can be introduced in the main `for` loop even though it reverses the order of the diagonals. Simple index calculations can be used to iterate through the board in both directions at the same time, hence avoiding having to run two or three `for` loops sequentially. 
 
-* Due to the way the board is represented we only need to check for rows containing more than one queen (not columns). It is assumed that the algorithm that solves the problem moves forward / backwards in the array, only modifying the value of the row of every queen (every `i`).
+* Due to the way the board is represented we only need to check for rows containing more than one queen (not columns). It is assumed that the algorithm that solves the problem moves forward / backwards in the array, only modifying the value of the row of every queen.
 
 * The algorithm takes into account that the default value for the N-Queens board is `-1`. That means,
 `-1` is the value for a queen that hasn't been placed in index `i` by the solving algorithm yet. Upon reaching this number it will be assumed that if the conflict checker hasn't returned yet it must be because there are no conflicts, so the default option will be executed. This means that the algorithm is safe to run both _while_ looking for a solution for the board as well as when board has been finished. Remaining `n - i` cases will not be tested, but it barely affects runtime complexity anyways. 
