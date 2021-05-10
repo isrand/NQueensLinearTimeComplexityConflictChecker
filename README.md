@@ -84,7 +84,7 @@ Some considerations on the design of the algorithm:
 
 An algorithm implementation in pseudocode is presented to illustrate the aforementioned design (with a single `for` loop).
 
-```p
+```
 hasConflicts (board):
    n = board.size
    rows = [n, 0]            
