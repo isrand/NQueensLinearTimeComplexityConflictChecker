@@ -108,7 +108,8 @@ hasConflicts (board):
          if secondaryDiagonals [secondaryDiagonal] >= 1:
             return true
          secondaryDiagonals [secondaryDiagonal]++
-
+      else:
+         break
    return false
 ```
 
