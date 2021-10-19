@@ -82,36 +82,7 @@ Some considerations on the design of the algorithm:
 
 ## Implementation
 
-An algorithm implementation in pseudocode is presented to illustrate the aforementioned design (with a single `for` loop).
-
-```
-hasConflicts (board):
-   n = board.size
-   rows = [n, 0]            
-   primaryDiagonals = [n * 2, 0]
-   secondaryDiagonals = [n * 2, 0]
-
-   for i in 0 ... n:
-      if board[i] != -1:
-         if rows [board[i]] >= 1:
-            return true
-         rows [board[i]]++
-
-         primaryDiagonal = n + i - board[i]
-
-         if primaryDiagonals [primaryDiagonal] >= 1:
-            return true
-         primaryDiagonals [primaryDiagonal]++
-
-         secondaryDiagonal = (n * 2 - 1) - (i + board[i])
-
-         if secondaryDiagonals [secondaryDiagonal] >= 1:
-            return true
-         secondaryDiagonals [secondaryDiagonal]++
-      else:
-         break
-   return false
-```
+An algorithm implementation in Javascript can be found in the root folder of this repository. It quickly showcases 
 
 ## Analysis
 
