@@ -82,7 +82,13 @@ Some considerations on the design of the algorithm:
 
 ## Implementation
 
-An algorithm implementation in Javascript can be found in the root folder of this repository. It quickly showcases 
+An algorithm implementation in Javascript can be found in the root folder of this repository. To run it, clone the repository and run:
+
+```
+node example.js
+```
+
+You can modify the `board` variable inside of the source code to test different board configurations and sizes. 
 
 ## Analysis
 
