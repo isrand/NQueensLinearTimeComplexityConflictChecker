@@ -27,7 +27,7 @@ here is an algorithm that checks for conflicts in linear time (and space) comple
 
 ## Algorithm steps
 
-#### 1) Check that every row contains only one queen.
+#### Check that every row contains only one queen.
 
 ```
    -----------------
@@ -41,7 +41,7 @@ here is an algorithm that checks for conflicts in linear time (and space) comple
    -----------------
 ```
 
-#### 2) Check that primary diagonals (left to right, top to bottom, starting in the bottom left corner) only contain one queen per diagonal.
+#### Check that n primary diagonals (left to right, top to bottom, starting in the bottom left corner) only contain one queen per diagonal.
 
 ```
    -----------------                  
@@ -55,7 +55,7 @@ here is an algorithm that checks for conflicts in linear time (and space) comple
    -----------------
 ```
 
-#### 3) Check that secondary diagonals (right to left, top to bottom, starting in the bottom right corner) only contain one queen per diagonal.
+#### Check that n secondary diagonals (right to left, top to bottom, starting in the bottom right corner) only contain one queen per diagonal.
 
 ```
    -----------------                  
